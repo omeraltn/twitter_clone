@@ -23,7 +23,7 @@
     @apply bg-secondary text-black rounded mt-1 p-2 outline-none shadow-lg focus:shadow-[gray]/70 w-full transition-shadow;
   }
   .form-icon {
-    @apply hover:bg-tw-blue/20 rounded-full size-9 grid place-items-center;
+    @apply hover:bg-tw-blue/20 rounded-full size-9 grid place-items-center cursor-pointer;
   }
   .submit-button {
     @apply bg-secondary text-primary font-bold h-9 px-5 py-1.5 rounded-full tracking-wide min-w-26.25 flex justify-center items-center;

@@ -6,9 +6,10 @@ const FormActions = () => {
   return (
     <div className="flex justify-between ">
       <div className="text-tw-blue text-xl gap-4 flex ">
-        <button type="button" className="form-icon">
+        <label htmlFor="file" type="button" className="form-icon">
           <Image />
-        </button>
+          <input type="file" id="file" name="media" className="hidden" />
+        </label>
 
         <button type="button" className="form-icon">
           <Gif />

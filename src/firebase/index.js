@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 
 //extra importlar
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // firebase konsol api key bilgileri
 
@@ -23,3 +25,10 @@ export const auth = getAuth(app);
 
 // google sağlayıcısının kurulum
 export const googleProvider = new GoogleAuthProvider();
+
+// firestore servisinin referansını al
+
+export const db = getFirestore(app);
+
+//storage servisinin referansını al
+export const storage = getStorage(app);
