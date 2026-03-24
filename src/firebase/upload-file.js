@@ -10,7 +10,7 @@ const uploadFile = async (file) => {
   //1- dosya yoksa durdur
   if (!file) return null;
 
-  //2- dosya formatı resim video ses değilse yüklemeye izin verme
+  //2.2- dosya formatı resim video ses değilse yüklemeye izin verme
   if (
     !file.type.startsWith("image") &&
     !file.type.startsWith("video") &&

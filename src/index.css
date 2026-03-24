@@ -28,4 +28,21 @@
   .submit-button {
     @apply bg-secondary text-primary font-bold h-9 px-5 py-1.5 rounded-full tracking-wide min-w-26.25 flex justify-center items-center;
   }
+
+  .post-icon {
+    @apply p-3 rounded-full cursor-pointer transition-all text-zinc-400;
+  }
+  .main-container::-webkit-scrollbar {
+    background: black;
+    width: 6px;
+  }
+  .main-container::-webkit-scrollbar-thumb {
+    background: rgb(72, 72, 72);
+    cursor: pointer;
+    border-radius: 30%;
+    transition: all 0.3s;
+  }
+  .main-container::-webkit-scrollbar-thumb:hover {
+    background: rgb(104, 104, 104);
+  }
 }

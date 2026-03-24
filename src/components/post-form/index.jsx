@@ -5,8 +5,14 @@ import TextArea from "./text-area";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase/index";
 import uploadFile from "../../firebase/upload-file";
+import { useState } from "react";
+import Preview from "./preview";
 
 const PostForm = ({ user }) => {
+  const [mediaType, setMediaType] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   //form gönderilince
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +25,9 @@ const PostForm = ({ user }) => {
 
     //veritabanına yeni tweeti kaydet
     try {
+      setIsLoading(true);
       //medyayı storage'a yükle
       const mediaUrl = await uploadFile(file);
-      console.log(mediaUrl);
-      return;
 
       //kolleksiyonun referansını al
       const collectionRef = collection(db, "tweets");
@@ -36,8 +41,8 @@ const PostForm = ({ user }) => {
         },
         content: {
           text,
-          media: null,
-          mediaType: null,
+          media: mediaUrl,
+          mediaType,
         },
         isEdited: false,
         likes: [],
@@ -46,9 +51,40 @@ const PostForm = ({ user }) => {
       //bildirim gönder ve sıfırla
       toast.success("Gönderi Paylaşıldı");
       e.target.reset();
+      handleCancelPreview();
+      setIsLoading(false);
     } catch (error) {
       toast.error("Hata!" + error.message);
     }
+  };
+
+  // seçili medya değişince çalışır
+  const handleMediaChange = (e) => {
+    //inputtan seçilen dosyaya eriş
+    if (e.target.files?.[0]) {
+      //inputtan seçilen dosyaya eriş
+      const file = e.target.files[0];
+
+      //seçilen dosyanın görüntülenmesini sağlayacak url oluştur
+      setPreviewUrl(URL.createObjectURL(file));
+
+      //desteklenen dosya tipini belirle
+      const mediaType = file.type.startsWith("image")
+        ? "image"
+        : file.type.startsWith("video")
+          ? "video"
+          : file.type.startsWith("audio")
+            ? "audio"
+            : "not-supported";
+      setMediaType(mediaType);
+    }
+  };
+
+  //önizlemeyi iptal eden fonksiyon
+  const handleCancelPreview = () => {
+    setPreviewUrl(null);
+    setMediaType(null);
+    console.log("redd");
   };
 
   return (
@@ -57,7 +93,17 @@ const PostForm = ({ user }) => {
 
       <form onSubmit={handleSubmit} className="w-full pt-1">
         <TextArea />
-        <FormActions />
+        <Preview
+          previewUrl={previewUrl}
+          mediaType={mediaType}
+          cancel={handleCancelPreview}
+          isLoading={isLoading}
+        />
+        <FormActions
+          handleMediaChange={handleMediaChange}
+          isLoading={isLoading}
+          mediaType={mediaType}
+        />
       </form>
     </div>
   );

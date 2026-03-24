@@ -1,4 +1,5 @@
 import PostForm from "../post-form";
+import PostList from "../post/post-list";
 
 const Main = ({ user }) => {
   return (
@@ -7,6 +8,7 @@ const Main = ({ user }) => {
         Anasayfa
       </header>
       <PostForm user={user} />
+      <PostList />
     </div>
   );
 };
