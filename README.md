@@ -78,8 +78,8 @@ Değişkenler: .env dosyası oluşturun ve VITE_API_KEY=anahtariniz ekleyin.
 
 ## Ekran Görüntüsü
 
-![]()
+![](./public/screen.jpg)
 
 ## Gifs
 
-![]()
+![](./public/tweet.gif)
