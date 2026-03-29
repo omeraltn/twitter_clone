@@ -2,6 +2,9 @@ import { FaDoorOpen } from "react-icons/fa";
 import { navSections } from "../../utils/constant";
 import { getUserName } from "../../utils/helpers";
 import UserAvatar from "../shared/user-avatar";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { toast } from "react-toastify";
 
 const Nav = ({ user }) => {
   return (
@@ -33,7 +36,14 @@ const Nav = ({ user }) => {
             </p>
           </div>
         </div>
-        <button type="button" title="Çıkış Yap" onClick={() => signOut()}>
+        <button
+          type="button"
+          title="Çıkış Yap"
+          onClick={() => {
+            signOut(auth);
+            toast.warn("Oturumunuz kapatıldı.");
+          }}
+        >
           <FaDoorOpen className="text-xl" />
         </button>
       </div>

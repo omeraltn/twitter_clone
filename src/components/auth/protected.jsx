@@ -21,11 +21,9 @@ const Protected = () => {
   // veri Yüklenene kadar loader bas
 
   if (user === undefined) return <PageLoader />;
-  // ! çıkış yaparken yanlışlık olabilir buna dön sonra
   //kullanıcı oturumu kapalıysa veya email doğrulanmamışsa logine yönlendir
   if (user === null || user?.emailVerified === false) {
-    if (user === null || user?.emailVerified === false)
-      toast.info("Mailinizi doğrulayın");
+    if (user?.emailVerified === false) toast.info("Mailinizi doğrulayın");
 
     //auth sayfasına yönlendir
     return <Navigate to={"/"} />;

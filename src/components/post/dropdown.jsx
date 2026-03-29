@@ -43,7 +43,10 @@ const Dropdown = ({ tweet }) => {
         {isOpen && (
           <div className="absolute bg-zinc-700/50 -inset-e-1 rounded-lg z-99 backdrop-blur-lg shadow-lg ">
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setIsModalOpen(true);
+                setIsOpen(false);
+              }}
               className="flex items-center gap-5 px-4 py-2 border-b border-zinc-500"
             >
               <MdEdit />

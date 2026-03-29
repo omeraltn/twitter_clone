@@ -6,7 +6,7 @@ import Nav from "../../components/home/nav";
 const Home = () => {
   const user = useOutletContext();
   return (
-    <div className=" h-screen bg-primary text-secondary overflow-hidden grid grid-cols-[1fr_minmax(300px,600px)_1fr]">
+    <div className=" h-screen bg-primary text-secondary overflow-hidden grid grid-cols-[1fr_minmax(300px,600px)_1fr] scroll-auto ">
       <Nav user={user} />
       <Main user={user} />
       <Aside />
